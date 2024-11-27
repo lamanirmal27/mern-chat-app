@@ -1,15 +1,23 @@
-import React from 'react'
-import Conversation from './Conversation'
+import React from "react";
+import Conversation from "./Conversation";
+import useGetConversation from "../../hooks/useGetConversation";
+import User from "../../../../backend/models/user.model";
 
 const Conversations = () => {
-  return (
-    <div className='py-2 flex flex-col overflow-auto'>
-        <Conversation/>
-        <Conversation/>
-        <Conversation/>
-        <Conversation/>
-    </div>
-  )
-}
+  const { loading, conversations } = useGetConversation();
 
-export default Conversations
+  return (
+    <div className="py-2 flex flex-col overflow-auto">
+      {conversations.map((user, idx) => (
+        <Conversation
+          key={user._id}
+          conversations={user}
+          lastIdx={idx === conversations.length - 1}
+        />
+      ))}
+      {/* <Conversation/> */}
+    </div>
+  );
+};
+
+export default Conversations;
