@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:4545/";
+const BASE_URL = "https://mern-chat-app-2tsg.onrender.com/";
 
 export default axios.create({
   baseURL: BASE_URL,
