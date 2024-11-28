@@ -1,16 +1,16 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
 
-const conservationSchema = mongoose.Schema(
+const conservationSchema = Schema(
   {
     participants: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "User",
       },
     ],
     messages: [
       {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "Message",
         default: [],
       },
@@ -19,5 +19,5 @@ const conservationSchema = mongoose.Schema(
   { timeStamps: true }
 );
 
-const Conservation = mongoose.model("Conservation", conservationSchema);
-export default Conservation
+const Conservation = model("Conservation", conservationSchema);
+export default Conservation;
