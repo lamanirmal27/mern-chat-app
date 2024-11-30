@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import useLogin from "../../hooks/useLogin";
 
@@ -6,6 +6,9 @@ const Login = () => {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const { Login, loading } = useLogin();
+  const inputRef = useRef();
+
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,6 +30,7 @@ const Login = () => {
             </label>
             <input
               type="text"
+              ref={inputRef}
               placeholder="Enter username"
               value={username}
               onChange={(e) => setUserName(e.target.value)}

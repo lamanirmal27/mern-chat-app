@@ -4,6 +4,7 @@ import MessageInput from "./MessageInput";
 import { TiMessages } from "react-icons/ti";
 import useConversation from "../../zustand/useConversation";
 import { useAuthContext } from "../../context/AuthContext";
+import TypingState from "./TypingState";
 
 const MessageContainer = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
@@ -27,6 +28,7 @@ const MessageContainer = () => {
               </span>
             </div>
             <Messages />
+            {/* <TypingState /> */}
             <MessageInput />
           </>
         )}

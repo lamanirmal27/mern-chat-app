@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useConversation from "../zustand/useConversation";
 import axios from "../api/axios";
 
@@ -13,8 +13,6 @@ const useGetMessages = () => {
         const response = await axios.get(
           `api/messages/${selectedConversation?._id}`
         );
-        console.log(response);
-
         // setMessages(response.data);
         setMessages(Array.isArray(response.data) ? response.data : []);
       } catch (error) {

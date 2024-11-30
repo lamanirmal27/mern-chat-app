@@ -26,6 +26,12 @@ io.on("connection", (socket) => {
     userSocketMap[userId] = socket.id;
   }
 
+  // socket.on("typing", (receiverId) => {
+  //   const receiverSocketId = getReceiverSocketId(receiverId);
+  //   if (receiverSocketId) {
+  //     io.to(receiverSocketId).emit("typing", true);
+  //   }
+  // });
   //used to send events to all connected clients
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
 

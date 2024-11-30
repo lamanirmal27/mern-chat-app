@@ -2,12 +2,15 @@ import React, { useEffect, useRef } from "react";
 import Message from "./Message";
 import useGetMessages from "../../hooks/useGetMessages";
 import useListenMessages from "../../hooks/useListenMessages";
+import TypingState from "./TypingState";
+import useConversation from "../../zustand/useConversation";
 
 const Messages = () => {
+  const { selectedConversation } = useConversation();
+  const isTyping = true;
   const { loading, messages } = useGetMessages();
   useListenMessages();
   const lastMessageRef = useRef(null);
-  // console.log(messages);
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,13 +27,12 @@ const Messages = () => {
             <Message chat={chat} />
           </div>
         ))}
-
       {!loading && messages.length === 0 && (
         <p className="text-center text-white">
           Send a message to start conversation
         </p>
       )}
-      {}
+      {isTyping && <TypingState chat={selectedConversation} />}
     </div>
   );
 };

@@ -13,6 +13,7 @@ const Message = ({ chat }) => {
     ? authUser?.profilePic
     : selectedConversation?.profilePic;
   const bubbleBgColor = formMe ? "bg-blue-500" : "";
+
   return (
     <div className={`chat ${chatClassName} `}>
       <div className="chat-image avatar">

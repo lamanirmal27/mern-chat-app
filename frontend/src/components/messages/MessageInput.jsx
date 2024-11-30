@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsSend } from "react-icons/bs";
+
 import useSendMessage from "../../hooks/useSendMessage";
+import useTypingStatus from "../../hooks/useTypingStatus";
 
 const MessageInput = () => {
   const [message, setMessage] = useState("");
   const { sendMessage, loading } = useSendMessage();
+
+  useTypingStatus(message);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
