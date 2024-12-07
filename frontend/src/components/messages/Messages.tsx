@@ -1,22 +1,24 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Message from "./Message";
 import useGetMessages from "../../hooks/useGetMessages";
 import useListenMessages from "../../hooks/useListenMessages";
 import TypingState from "./TypingState";
-import useConversation from "../../zustand/useConversation";
+import useTypingStatus from "../../hooks/useTypingStatus";
 
-const Messages = () => {
-  const { selectedConversation } = useConversation();
-  const isTyping = true;
+const Messages: React.FC = () => {
+  const { isTyping } = useTypingStatus();
   const { loading, messages } = useGetMessages();
   useListenMessages();
-  const lastMessageRef = useRef(null);
+  const lastMessageRef = useRef<HTMLDivElement | null>(null);
+  const typingRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setTimeout(() => {
-      lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
-    }, 250);
+    lastMessageRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
+
+  useEffect(() => {
+    typingRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [isTyping]);
 
   return (
     <div className="px-4 flex-1 overflow-auto">
@@ -32,7 +34,11 @@ const Messages = () => {
           Send a message to start conversation
         </p>
       )}
-      {isTyping && <TypingState chat={selectedConversation} />}
+      {isTyping && (
+        <div ref={typingRef}>
+          <TypingState />
+        </div>
+      )}
     </div>
   );
 };

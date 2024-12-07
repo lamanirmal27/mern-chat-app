@@ -3,7 +3,7 @@ import useConversation from "../zustand/useConversation";
 import axios from "../api/axios";
 
 const useGetMessages = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<Boolean>(false);
   const { messages, setMessages, selectedConversation } = useConversation();
 
   useEffect(() => {
@@ -11,9 +11,8 @@ const useGetMessages = () => {
       setLoading(true);
       try {
         const response = await axios.get(
-          `api/messages/${selectedConversation?._id}`
+          `api/messages/${selectedConversation?._id}`,
         );
-        // setMessages(response.data);
         setMessages(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.log(error);

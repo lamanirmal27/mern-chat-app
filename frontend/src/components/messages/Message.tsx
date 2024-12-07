@@ -1,9 +1,20 @@
-import React from "react";
 import { useAuthContext } from "../../context/AuthContext";
 import useConversation from "../../zustand/useConversation";
 import { extractTime } from "../../utils/extractTime";
 
-const Message = ({ chat }) => {
+interface PropType {
+  chat: {
+    _id: string;
+    senderId: string;
+    receiverId: string;
+    message: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+  };
+}
+
+const Message: React.FC<PropType> = ({ chat }) => {
   const { authUser } = useAuthContext();
   const { selectedConversation } = useConversation();
   const formMe = chat.senderId === authUser._id;

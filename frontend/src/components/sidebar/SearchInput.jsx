@@ -25,6 +25,7 @@ const SearchInput = () => {
   return (
     <form className="flex items-center gap-2" onSubmit={findUser}>
       <input
+        id="manxe khojne"
         type="text"
         placeholder="Search user.."
         value={tempUser}

@@ -1,17 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
+import { useSocketContext } from "../context/SocketContext";
+import useConversation from "../zustand/useConversation";
+import { useAuthContext } from "../context/AuthContext";
 
-const useTypingStatus = (message) => {
+const useTypingStatus = () => {
+  const { selectedConversation, setSelectedConversation } = useConversation();
+  const { authUser } = useAuthContext();
+  const { socket } = useSocketContext();
+  const [isTyping, setIsTyping] = useState(false);
+
   useEffect(() => {
-    if (message.length > 0) {
-      console.log("user is typing");
+    socket?.on("typingResponse", (data) => {
+      if (selectedConversation?._id === data?.sender) {
+        setIsTyping(() => {
+          return true;
+        });
+      }
+    });
 
-      const typingTimeout = setTimeout(() => {
-        console.log("user stopped typing");
-      }, 1000);
+    socket?.on("stopTypingResponse", () => {
+      setIsTyping(() => {
+        return false;
+      });
+    });
 
-      return () => clearTimeout(typingTimeout);
-    }
-  }, [message]);
+    return () => {
+      socket?.off("typingResponse");
+      socket?.off("stopTypingResponse");
+    };
+  }, [socket, selectedConversation, authUser]);
+
+  return { isTyping, setIsTyping };
 };
 
 export default useTypingStatus;

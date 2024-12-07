@@ -1,18 +1,17 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import Messages from "./Messages";
 import MessageInput from "./MessageInput";
 import { TiMessages } from "react-icons/ti";
 import useConversation from "../../zustand/useConversation";
 import { useAuthContext } from "../../context/AuthContext";
-import TypingState from "./TypingState";
 
-const MessageContainer = () => {
+const MessageContainer: React.FC = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
 
   useEffect(() => {
-    //cleanup
-    return setSelectedConversation(null);
+    return () => setSelectedConversation(null);
   }, [setSelectedConversation]);
+
   return (
     <div className="md:min-w-[450px] flex flex-col">
       <>
@@ -21,9 +20,13 @@ const MessageContainer = () => {
         ) : (
           <>
             {/* Header */}
-            <div className="bg-slate-500 px-4 py-2 mb-2">
-              <span className="label-text">To: </span>{" "}
-              <span className="text-gray-900 font-bold">
+            <div className="bg-slate-500 px-4 py-2 mb-2 flex">
+              <div className="avatar h-9 w-9 ">
+                <div className="w-24 rounded-xl ">
+                  <img src={selectedConversation?.profilePic} />
+                </div>
+              </div>
+              <span className="text-gray-900 font-bold my-auto ml-3">
                 {selectedConversation?.fullName}
               </span>
             </div>
@@ -37,7 +40,7 @@ const MessageContainer = () => {
   );
 };
 
-const NoChatSelected = () => {
+const NoChatSelected: React.FC = () => {
   const { authUser } = useAuthContext();
   return (
     <div className="flex items-center justify-center w-full h-full">
