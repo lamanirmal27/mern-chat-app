@@ -1,9 +1,12 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:4545/"||import.meta.env.VITE_BACKEND_URL  ;
+const axiosUrl =
+  import.meta.env.VITE_ENV === "development"
+    ? "http:localhost:4545"
+    : import.meta.env.VITE_BACKEND_URL;
 
 export default axios.create({
-  baseURL: BASE_URL,
+  baseURL: axiosUrl,
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
