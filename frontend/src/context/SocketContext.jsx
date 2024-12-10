@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useAuthContext } from "./AuthContext";
 import io from "socket.io-client";
 
-const socketUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:4545";
+const socketUrl = "http://localhost:4545" || import.meta.env.VITE_BACKEND_URL;
 
 const SocketContext = createContext();
 

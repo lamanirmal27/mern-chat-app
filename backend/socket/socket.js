@@ -3,7 +3,8 @@ import http from "http";
 import express from "express";
 
 const app = express();
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
+const FRONTEND_URL = "http://localhost:5173" || process.env.FRONTEND_URL;
+console.log(process.env.FRONTEND_URL);
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
