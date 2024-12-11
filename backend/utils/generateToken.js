@@ -14,7 +14,6 @@ const generateTokenAndSetCookie = (userId, res) => {
     httpOnly: true,
     sameSite: isProduction ? "none" : "lax",
     secure: isProduction,
-    domain: 'mern-chat-app-beta-blush.vercel.app'
   });
 };
 
