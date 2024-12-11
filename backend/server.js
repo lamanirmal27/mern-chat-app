@@ -20,6 +20,10 @@ app.use(cookieParser());
 
 app.use(cors(corsOptions));
 
+app.get("/", (req, res) => {
+  res.json({ message: "welcome home" });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/messages", messageRoutes);
 app.use("/api/users", userRoutes);

@@ -2,16 +2,16 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useAuthContext } from "./AuthContext";
 import io from "socket.io-client";
 
+export const useSocketContext = () => {
+  return useContext(SocketContext);
+};
+
 const socketUrl =
   import.meta.env.VITE_ENV === "development"
     ? "http://localhost:4545"
     : import.meta.env.VITE_BACKEND_URL;
 
 const SocketContext = createContext();
-
-export const useSocketContext = () => {
-  return useContext(SocketContext);
-};
 
 export const SocketContextProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);

@@ -7,11 +7,13 @@ const generateTokenAndSetCookie = (userId, res) => {
     expiresIn: "15d",
   });
 
+  const isProduction = process.env.NODE_ENV === "production";
+
   res.cookie("jwt", token, {
-    maxAge: 15 * 24 * 60 * 60 * 1000,
-    httpOnly: true,
-    sameSite: "none",
-    secure: process.env.NODE_ENV === 'production',
+    maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
+    httpOnly: true, // Prevent JavaScript access
+    sameSite: isProduction ? "none" : "lax", // Use "none" for cross-origin in production, "lax" for local dev
+    secure: isProduction, // Use secure cookies in production
   });
 };
 
