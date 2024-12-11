@@ -10,7 +10,7 @@ const FRONTEND_URL =
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: [FRONTEND_URL],
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
