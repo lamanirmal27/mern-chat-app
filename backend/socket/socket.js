@@ -4,9 +4,9 @@ import express from "express";
 
 const app = express();
 const FRONTEND_URL =
-  process.env.NODE_ENV === "development"
+  process.env.DEV_ENV === "development"
     ? "http://localhost:5173"
-    : process.env.BACKEND_URL;
+    : process.env.DEV_ENV;
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
