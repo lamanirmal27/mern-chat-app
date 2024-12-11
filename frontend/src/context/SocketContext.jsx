@@ -7,9 +7,9 @@ export const useSocketContext = () => {
 };
 
 const socketUrl =
-  import.meta.env.VITE_ENV === "development"
-    ? "http://localhost:4545"
-    : import.meta.env.VITE_BACKEND_URL;
+  import.meta.env.VITE_ENV !== "development"
+    ? import.meta.env.VITE_BACKEND_URL
+    : "http://localhost:4545";
 
 const SocketContext = createContext();
 
