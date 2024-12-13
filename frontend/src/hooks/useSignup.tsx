@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "../api/axios";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
 
 const SIGNUP_URL = "/api/auth/signup";
+
+interface SignupData{
+    fullName: string;
+    username:string;
+    password: string;
+    confirmPassword: string;
+    gender:string
+}
 
 const useSignup = () => {
   const [loading, setLoading] = useState(false);
@@ -14,7 +22,7 @@ const useSignup = () => {
     password,
     confirmPassword,
     gender,
-  }) => {
+  }: SignupData) => {
     const success = handleInputErrors({
       fullName,
       username,
@@ -42,7 +50,7 @@ const useSignup = () => {
       localStorage.setItem("chat-user", JSON.stringify(res.data));
       setAuthUser(res.data);
       console.log(res.data);
-    } catch (error) {
+    } catch (error:any) {
       if (!error?.response) {
         toast.error("No response from server");
       } else {
@@ -65,7 +73,7 @@ function handleInputErrors({
   password,
   confirmPassword,
   gender,
-}) {
+}: SignupData) {
   if (!fullName || !username || !password || !confirmPassword) {
     toast.error("Enter all the details!!");
     return false;

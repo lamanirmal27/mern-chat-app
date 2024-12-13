@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "../api/axios";
 
 const useGetConversation = () => {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<Boolean>(false);
   const [conversations, setConversations] = useState([]);
 
   useEffect(() => {

@@ -35,7 +35,6 @@ io.on("connection", (socket) => {
   socket.on("typing", (data) => {
     const receiverSocketId = getReceiverSocketId(data?.receiver);
     socket.to(receiverSocketId).emit("typingResponse", data);
-    // socket.broadcast.emit("typingResponse", data);
   });
 
   socket.on("stopTyping", () => {
@@ -43,7 +42,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    console.log("a client disconnected", socket.id);
     delete userSocketMap[userId];
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
   });

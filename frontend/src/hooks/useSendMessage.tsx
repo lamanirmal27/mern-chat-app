@@ -1,22 +1,33 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import useConversation from "../zustand/useConversation";
 import axios from "../api/axios";
 import toast from "react-hot-toast";
+
+interface Message {
+  _id: string;
+  senderId: string;
+  receiverId: string;
+  message: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
 
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
 
-  const sendMessage = async (message) => {
+  const sendMessage = async (message: Message) => {
     setLoading(true);
     try {
       const res = await axios.post(
-        `api/messages/send/${selectedConversation._id}`,
+        `api/messages/send/${selectedConversation?._id}`,
         JSON.stringify({ message })
       );
       // console.log(res.data);
       setMessages([...messages, res.data]);
-    } catch (error) {
+    } catch (error:any) {
       console.error(error);
       toast.error(error.message);
     } finally {

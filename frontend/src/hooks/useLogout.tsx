@@ -1,4 +1,3 @@
-import React from "react";
 import { useAuthContext } from "../context/AuthContext";
 import axios from "../api/axios";
 import toast from "react-hot-toast";

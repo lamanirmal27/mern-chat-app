@@ -3,6 +3,10 @@ import { useSocketContext } from "../context/SocketContext";
 import useConversation from "../zustand/useConversation";
 import { useAuthContext } from "../context/AuthContext";
 
+interface Message{
+  sender: string
+}
+
 const useTypingStatus = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
   const { authUser } = useAuthContext();
@@ -10,7 +14,7 @@ const useTypingStatus = () => {
   const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
-    socket?.on("typingResponse", (data) => {
+    socket?.on("typingResponse", (data: Message) => {
       if (selectedConversation?._id === data?.sender) {
         setIsTyping(() => {
           return true;
