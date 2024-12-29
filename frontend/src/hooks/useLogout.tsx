@@ -7,7 +7,7 @@ const useLogout = () => {
 
   const logout = async () => {
     try {
-      const response = await axios.post("api/auth/logout");
+      const response = await axios.post("/auth/logout");
       console.log(response);
       toast.success(response.data);
       localStorage.removeItem("chat-user");

@@ -35,7 +35,7 @@ const Conversation = ({ conversations, lastIdx }) => {
       >
         <div className={`avatar ${isOnline ? "online" : "offline"}`}>
           <div className="w-12 rounded-full">
-            <img src={conversations.profilePic} alt="user avatar" />
+            <img src={conversations?.profilePicture || conversations?.profilePic} alt="user avatar" />
           </div>
         </div>
 

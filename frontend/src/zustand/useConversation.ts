@@ -4,7 +4,8 @@ import { create } from "zustand";
 interface Conversation {
   fullName: string;
   gender: string;
-  profilePic: string;
+  profilePic?: string;
+  profilePicture?: string;
   username: string;
   _id: string;
   __v: number;

@@ -10,3 +10,6 @@ export default axios.create({
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
 });
+
+export const getCurrentUser = () => axios.get("/api/current_user");
+export const logout = () => axios.get("/api/logout");

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import useGetConversation from "../../hooks/useGetConversation";
 import toast from "react-hot-toast";
-import useConversation from "../../zustand/useConversation";
+import useConversation from "../../zustand/useConversation.ts";
 
 const SearchInput = () => {
   const { conversations } = useGetConversation();

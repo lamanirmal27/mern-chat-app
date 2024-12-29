@@ -21,7 +21,7 @@ const Messages: React.FC = () => {
   }, [isTyping]);
 
   return (
-    <div className="px-4 flex-1 overflow-auto">
+    <div className="px-4 flex-1 overflow-y-scroll">
       {!loading &&
         messages.length > 0 &&
         messages.map((chat) => (

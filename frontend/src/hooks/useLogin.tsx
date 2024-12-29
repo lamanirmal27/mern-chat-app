@@ -21,7 +21,7 @@ const useLogin = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "api/auth/login",
+        "/auth/login",
         JSON.stringify({
           username,
           password,

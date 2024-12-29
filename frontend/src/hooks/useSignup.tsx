@@ -3,7 +3,7 @@ import axios from "../api/axios";
 import toast from "react-hot-toast";
 import { useAuthContext } from "../context/AuthContext";
 
-const SIGNUP_URL = "/api/auth/signup";
+const SIGNUP_URL = "/auth/signup";
 
 interface SignupData{
     fullName: string;
