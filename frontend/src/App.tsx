@@ -4,6 +4,7 @@ import Home from "./pages/home/Home";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { useAuthContext } from "./context/AuthContext";
 import AuthCheck from "./components/oauth-google/AuthCheck";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 function App() {
   const { authUser } = useAuthContext();
@@ -25,6 +26,10 @@ function App() {
         <Route
           path="/auth-success"
           element={<AuthCheck />}
+        />
+        <Route
+          path="/privacy-policy"
+          element={<PrivacyPolicy />}
         />
       </Routes>
     </div>

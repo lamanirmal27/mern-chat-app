@@ -1,8 +1,13 @@
 import googleIcon from "../../assets/google.svg";
+const REDIRECTURL = `${
+  import.meta.env.VITE_ENV === "development"
+    ? "http://localhost:4545"
+    : import.meta.env.VITE_BACKEND_URL
+}/auth/google`;
 
 const GoogleAuth = () => {
   const handleGoogleLogin = () => {
-    window.open("http://localhost:4545/auth/google", "_self");
+    window.open(REDIRECTURL);
   };
 
   return (

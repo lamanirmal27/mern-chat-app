@@ -21,8 +21,8 @@ const Message: React.FC<PropType> = ({ chat }) => {
   const formattedTime = extractTime(chat.createdAt);
   const chatClassName = formMe ? "chat-end" : "chat-start";
   const profilePic = formMe
-    ? authUser?.profilePic
-    : selectedConversation?.profilePic;
+    ? authUser?.profilePicture 
+    : selectedConversation?.profilePicture;
   const bubbleBgColor = formMe ? "bg-blue-500" : "";
 
   return (

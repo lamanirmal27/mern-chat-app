@@ -29,7 +29,7 @@ const authController = {
         username,
         password: hashedPassword,
         gender,
-        profilePic: gender === "male" ? boyProfilePic : girlProfilePic,
+        profilePicture: gender === "male" ? boyProfilePic : girlProfilePic,
       });
 
       if (newUser) {
@@ -40,7 +40,7 @@ const authController = {
           _id: newUser._id,
           fullName: newUser.fullName,
           username: newUser.username,
-          profilePic: newUser.profilePic,
+          profilePicture: newUser.profilePic,
         });
       } else {
         res.status(500).json({ error: "Failed to create user" });
@@ -73,7 +73,7 @@ const authController = {
         _id: user._id,
         fullName: user.fullName,
         username: user.username,
-        profilePic: user.profilePic || user.profilePicture,
+        profilePicture: user.profilePicture,
       });
     } catch (error) {
       console.log("Error in login controller: ", error.message);
@@ -88,18 +88,6 @@ const authController = {
       console.log("Error in logout controller", error.message);
       res.status(500).json({ error: "Internal server error" });
     }
-  }, // Google OAuth callback
-  googleAuthCallback: (req, res) => {
-    console.log("here good!!");
-
-    // After successful authentication, you can store user info in session or DB
-
-    res.redirect("/"); // Redirect to the home page or dashboard after success
-  },
-  // Google OAuth failure
-  googleAuthFailure: (req, res) => {
-    // Handle authentication failure
-    res.send("Authentication failed. Please try again.");
   },
 };
 
