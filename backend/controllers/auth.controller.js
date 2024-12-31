@@ -73,7 +73,7 @@ const authController = {
         _id: user._id,
         fullName: user.fullName,
         username: user.username,
-        profilePic: user.profilePic,
+        profilePic: user.profilePic || user.profilePicture,
       });
     } catch (error) {
       console.log("Error in login controller: ", error.message);
