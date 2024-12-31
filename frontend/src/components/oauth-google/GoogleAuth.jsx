@@ -4,10 +4,12 @@ const REDIRECTURL = `${
     ? "http://localhost:4545"
     : import.meta.env.VITE_BACKEND_URL
 }/auth/google`;
+console.log(REDIRECTURL);
+
 
 const GoogleAuth = () => {
   const handleGoogleLogin = () => {
-    window.open(REDIRECTURL);
+    window.open(REDIRECTURL, "_self");
   };
 
   return (
