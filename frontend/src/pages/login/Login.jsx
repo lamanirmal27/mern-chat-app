@@ -16,8 +16,8 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
-      <div className="w-full p-6 rounded-xl shadow-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-1">
-        <h1 className="text-3xl font-semibold text-center text-gray-300">
+      <div className="w-full p-6 rounded-xl shadow-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-1 dark:bg-white dark:bg-opacity-10">
+        <h1 className="text-3xl font-semibold text-center dark:text-gray-30">
           Login
           <span className="text-orange-500">ChatApp</span>
         </h1>
@@ -58,12 +58,13 @@ const Login = () => {
             <button
               disabled={loading}
               onClick={handleLogin}
-              className="btn glass btn-block btn-sm mt-2"
+              className="btn glass btn-block btn-sm mt-2 "
             >
               {loading ? <span className="loading loading-spinner" /> : "Login"}
             </button>
           </div>
         </form>
+        <hr className="my-4" />
         <GoogleAuth />
       </div>
     </div>
