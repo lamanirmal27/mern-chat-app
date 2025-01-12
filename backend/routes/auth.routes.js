@@ -4,7 +4,10 @@ import authController from "../controllers/auth.controller.js";
 import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 const router = express.Router();
-const CLIENT_URL = "http://localhost:5173";
+const REDIRECT_URL =
+  process.env.DEV_ENV === "development"
+    ? "http://localhost:5173"
+    : process.env.BACKEND_URL;
 
 // Google OAuth routes
 router.get(
@@ -17,16 +20,16 @@ router.get(
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: CLIENT_URL + "/login",
+    failureRedirect: REDIRECT_URL + "/login",
   }),
   (req, res) => {
     try {
       generateTokenAndSetCookie(req.user._id.toString(), res);
       // Redirect to frontend with success flag
-      res.redirect(CLIENT_URL + "/auth-success");
+      res.redirect(REDIRECT_URL + "/auth-success");
     } catch (error) {
       console.log("error", error);
-      res.redirect(CLIENT_URL + "/login");
+      res.redirect(REDIRECT_URL + "/login");
     }
   }
 );

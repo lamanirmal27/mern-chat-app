@@ -18,14 +18,14 @@ const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
   const { messages, setMessages, selectedConversation } = useConversation();
 
-  const sendMessage = async (message: Message) => {
+  const sendMessage = async (message: string) => {
     setLoading(true);
     try {
       const res = await axios.post(
         `api/messages/send/${selectedConversation?._id}`,
         JSON.stringify({ message })
       );
-      // console.log(res.data);
+
       setMessages([...messages, res.data]);
     } catch (error:any) {
       console.error(error);
