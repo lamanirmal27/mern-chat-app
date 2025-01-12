@@ -1,7 +1,7 @@
 import googleIcon from "../../assets/google.svg";
 const REDIRECTURL = `${
   import.meta.env.VITE_ENV !== "development"
-    ? 'https://mern-chat-app-hpzn.onrender.com'
+    ? import.meta.env.VITE_BACKEND_URL
     : "http://localhost:4545"
 }/auth/google`;
 
