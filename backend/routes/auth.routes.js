@@ -7,7 +7,7 @@ const router = express.Router();
 const REDIRECT_URL =
   process.env.DEV_ENV === "developmentr"
     ? "http://localhost:5173"
-    : process.env.BACKEND_URL;
+    : process.env.FRONTEND_URL;
 
 // Google OAuth routes
 router.get(
