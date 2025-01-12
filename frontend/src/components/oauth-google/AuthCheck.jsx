@@ -15,6 +15,7 @@ const AuthCheck = () => {
     const verifyAuth = async () => {
       try {
         const { data } = await axios.get("/auth/auth-status");
+        console.log(data);
         if (data.authenticated && data.user) {
           localStorage.setItem("chat-user", JSON.stringify(data.user));
           setAuthUser(data.user);
