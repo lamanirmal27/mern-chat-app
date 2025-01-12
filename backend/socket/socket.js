@@ -7,6 +7,8 @@ const FRONTEND_URL =
   process.env.DEV_ENV === "development"
     ? "http://localhost:5173"
     : process.env.FRONTEND_URL;
+console.log("FRONTEND_URL", FRONTEND_URL);
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
