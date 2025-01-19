@@ -9,6 +9,7 @@ export default axios.create({
   baseURL: axiosUrl,
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
+  credentials: "include",
 });
 
 export const getCurrentUser = () => axios.get("/api/current_user");
