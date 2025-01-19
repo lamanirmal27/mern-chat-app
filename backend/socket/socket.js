@@ -1,21 +1,13 @@
 import { Server } from "socket.io";
 import http from "http";
 import express from "express";
+import { corsOptions } from "../config/corsOptions.js";
 
 const app = express();
-const FRONTEND_URL =
-  process.env.DEV_ENV === "development"
-    ? "http://localhost:5173"
-    : process.env.FRONTEND_URL;
-console.log("FRONTEND_URL", FRONTEND_URL);
 
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: {
-    origin: FRONTEND_URL,
-    methods: ["GET", "POST"],
-    credentials: true,
-  },
+  cors: corsOptions,
 });
 
 const userSocketMap = {};
