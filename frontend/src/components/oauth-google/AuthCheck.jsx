@@ -23,6 +23,8 @@ const AuthCheck = () => {
             navigate("/");
             setLoading(false);
           }, 1500);
+        } else {
+          navigate("/login");
         }
       } catch (error) {
         setError("Authentication failed");
