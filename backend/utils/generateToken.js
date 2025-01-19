@@ -14,6 +14,8 @@ const generateTokenAndSetCookie = (userId, res) => {
     httpOnly: true,
     sameSite: isProduction ? "none" : "lax",
     secure: isProduction,
+    domain: isProduction && process.env.FRONTEND_URL,
+    path: "/",
   });
 };
 
