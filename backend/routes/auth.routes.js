@@ -5,7 +5,7 @@ import generateTokenAndSetCookie from "../utils/generateToken.js";
 
 const router = express.Router();
 const REDIRECT_URL =
-  process.env.DEV_ENV === "developmentr"
+  process.env.DEV_ENV === "development"
     ? "http://localhost:5173"
     : process.env.FRONTEND_URL;
 
