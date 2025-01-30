@@ -7,15 +7,11 @@ const generateTokenAndSetCookie = (userId, res) => {
     expiresIn: "15d",
   });
 
-  const isProduction = process.env.DEV_ENV === "production";
-
   res.cookie("jwt", token, {
     maxAge: 15 * 24 * 60 * 60 * 1000,
     httpOnly: true,
-    sameSite: isProduction ? "none" : "lax",
-    secure: isProduction,
-    domain: isProduction && process.env.FRONTEND_URL,
-    path: "/",
+    sameSite: "None",
+    secure: true,
   });
 };
 
