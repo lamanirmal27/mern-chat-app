@@ -19,19 +19,19 @@ const AuthCheck = () => {
         if (data.authenticated && data.user) {
           localStorage.setItem("chat-user", JSON.stringify(data.user));
           setAuthUser(data.user);
-          timeoutId = setTimeout(() => {
-            navigate("/");
-            setLoading(false);
-          }, 1500);
-        } else {
-          navigate("/login");
+          window.location.href = "/";
+          return;
         }
+        navigate("/login");
       } catch (error) {
-        setError("Authentication failed");
-        timeoutId = setTimeout(() => {
+        if (error.response?.status === 401) {
           navigate("/login");
-          setLoading(false);
-        }, 1500);
+        } else {
+          console.error("Auth check failed:", error);
+          setError("Connection error - please refresh");
+        }
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -43,13 +43,23 @@ const AuthCheck = () => {
   }, [navigate, setAuthUser]);
 
   return (
-    <div className="h-[400px] w-[600px] flex items-center justify-center bg-white-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30 ">
-      {loading && (
+    <div className="h-[400px] w-[600px] flex items-center justify-center bg-white-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-30">
+      {loading ? (
         <p className="flex justify-center items-center text-4xl font-semibold text-white">
-          Loading...<span className="loading loading-spinner loading-lg"></span>
+          Verifying session...
+          <span className="loading loading-spinner loading-lg ml-2"></span>
         </p>
-      )}
-      {error && <p>{error}</p>}
+      ) : error ? (
+        <div className="text-red-500 text-center">
+          <p className="text-2xl mb-4">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="btn btn-primary"
+          >
+            Try Again
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 };
