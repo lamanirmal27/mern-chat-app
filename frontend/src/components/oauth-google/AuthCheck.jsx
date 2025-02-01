@@ -25,6 +25,7 @@ const AuthCheck = () => {
         navigate("/login");
       } catch (error) {
         if (error.response?.status === 401) {
+          console.log(error?.response?.data);
           navigate("/login");
         } else {
           console.error("Auth check failed:", error);
