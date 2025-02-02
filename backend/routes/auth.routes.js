@@ -37,8 +37,7 @@ router.get(
 // Auth status check route
 router.get("/auth-status", (req, res) => {
   try {
-    console.log(req.user)
-    console.log(req.isAuthenticated());
+    console.log(req)
 
     res.status(200).json({
       authenticated: req.isAuthenticated(),
